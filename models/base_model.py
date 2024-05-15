@@ -19,6 +19,7 @@ class BaseModel:
         self.updated_at = datetime.now()
 
     def to_dict(self):
+        """Method to convert an instaces of the BaseModel class to key-value pair dictionaries"""
         dic_copy = self.__dict__.copy()
         dic_copy["__class__"] = self.__class__.__name__
         dic_copy["created_at"] = self.created_at.isoformat()
