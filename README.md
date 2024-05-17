@@ -93,5 +93,5 @@ $ python3 unittest -m tests/test_console.py
 
 ## Authors :black_nib:
 
-* **Atabong Cecilia** <[cecilia-89](https://github.com/cecilia-89)>
-* **Ijabadeniyi Ifedayo** <[Adeniyii](https://github.com/Adeniyii)>
+* **Mustapha Mohammed** <[mustapha0705](https://github.com/mustapha0705)>
+* **Ikechukwu Ashimonye** <[tech-gecko](https://github.com/tech-gecko)>
