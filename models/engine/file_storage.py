@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""Models for the FileStorage class"""
+"""
+Module: file_storage.py
+
+Defines a `FileStorage` class.
+"""
 from models.base_model import BaseModel
 import json
 import os
@@ -16,6 +20,8 @@ class FileStorage:
     def new(self, obj):
         """Adds the object to the __objects dictionary"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        
+        #the obj object is set in __object with key className.id
         self.__objects[key] = obj
     
     def save(self):
@@ -33,11 +39,17 @@ class FileStorage:
     
     def reload(self):
         """Deserializes the JSON file to __objects"""
+        # Check if the JSON file exists
         if os.path.exists(self.__file_path):
+            # Open the JSON file in read mode with utf-8 encoding
             with open(self.__file_path, encoding='utf-8') as file:
                 loaded_dictionary = json.load(file)
+            # Iterate over each key-value pair in the loaded dictionary
             for key, value in loaded_dictionary.items():
                 class_name = eval(value["__class__"])
+                # Recreate the object and store it in __objects dictionary
                 self.__objects[key] = class_name
         else:
+            # If the file does not exist, do nothing
             pass
+
