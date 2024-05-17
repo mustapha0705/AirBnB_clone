@@ -2,6 +2,7 @@
 """Models for the BaseModel class"""
 from models.engine import file_storage
 from .engine import storage
+import models
 import uuid
 from datetime import datetime
 
