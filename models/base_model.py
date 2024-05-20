@@ -26,7 +26,7 @@ class BaseModel:
             self.updated_at = datetime.now()
             
             #Adds the new object to the __objects dictionary with classname.id as a Key
-            models.storage.new()
+            models.storage.new(self)
 
     def __str__(self):
         """Returns class name, the id, and available attributes as key-value pairs"""

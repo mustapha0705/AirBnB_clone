@@ -5,6 +5,7 @@ Module: file_storage.py
 Defines a `FileStorage` class.
 """
 from models.base_model import BaseModel
+from models.user import User
 import json
 import os
 
@@ -46,9 +47,10 @@ class FileStorage:
                 loaded_dictionary = json.load(file)
             # Iterate over each key-value pair in the loaded dictionary
             for key, value in loaded_dictionary.items():
-                class_name = eval(value["__class__"])
+                cls = eval(value["__class__"])
+                obj = cls(**value)
                 # Recreate the object and store it in __objects dictionary
-                self.__objects[key] = class_name
+                self.__objects[key] = obj
         else:
             # If the file does not exist, do nothing
             pass
