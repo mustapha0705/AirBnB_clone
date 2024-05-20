@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-import cmd
-from models.base_model import BaseModel
-from models import storage
 """This module defines the entry point of the command interpreter.
 
 It defines one class, `HBNBCommand()`, which sub-classes the `cmd.Cmd` class.
@@ -28,6 +25,15 @@ Typical usage example:
     (hbnb) quit
     $
 """
+import cmd
+from models.base_model import BaseModel
+from models import storage
+from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
 
 class_names = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
