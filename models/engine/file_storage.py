@@ -59,4 +59,3 @@ class FileStorage:
         else:
             # If the file does not exist, do nothing
             pass
-
