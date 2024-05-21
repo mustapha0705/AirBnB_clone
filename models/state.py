@@ -13,5 +13,4 @@ class State(BaseModel):
     Attributes:
         name
     """
-    name = ""
-    
+    name = "" 
