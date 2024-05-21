@@ -20,7 +20,6 @@ Typical usage example:
     Documented commands (type help <topic>):
     ========================================
     EOF  create  help  quit
-
     (hbnb)
     (hbnb) quit
     $
@@ -35,7 +34,8 @@ from models.place import Place
 from models.city import City
 from models.amenity import Amenity
 
-class_names = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+class_names = ["BaseModel", "User", "State",
+               "City", "Amenity", "Place", "Review"]
 
 
 class HBNBCommand(cmd.Cmd):
@@ -49,14 +49,13 @@ class HBNBCommand(cmd.Cmd):
     It sub-classes Python's `cmd.Cmd` class which provides a simple framework
     for writing line-oriented command interpreters.
     """
-    
-    prompt = "(hbnb) "    
-    
+    prompt = "(hbnb) "
+
     def do_create(self, arg):
         """Creates a new instance of BaseModel"""
         if len(arg) < 1:
             print("** class name missing **")
-        
+
         elif arg in class_names:
             base_model1 = BaseModel()
             base_model1.save()
@@ -64,59 +63,60 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             print("** class doesn't exist **")
-    
+
     def do_show(self, arg):
         """Prints an instance based on class name and id"""
         args = arg.split()
         if len(arg) < 1:
             print("** class name missing **")
             return
-        
+
         if args[0] not in class_names:
             print("** class doesn't exist **")
             return
-        
+
         if len(args) == 1:
             print("** instance id missing **")
             return
-            
+
         obj_intsance = storage.all()
-        
+
         key = "{}.{}".format(args[0], args[1])
         requested_instance = obj_intsance.get(key)
         if not requested_instance:
             print("** no instance found **")
             return
         print(requested_instance)
-        
+
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id."""
         args = arg.split()
-        
+
         if len(arg) < 1:
             print("** class name missing **")
             return
-        
+
         if args[0] not in class_names:
             print("** class doesn't exist **")
             return
-        
+
         if len(args) == 1:
             print("** instance id missing **")
             return
-        
+
         obj_instance = storage.all()
         key = "{}.{}".format(args[0], args[1])
-        
+
         requested_instance = obj_instance.get(key)
         if not requested_instance:
             print("** no instance found **")
             return
         del storage.all()[key]
         storage.save()
-        
+
     def do_all(self, arg):
-        """Prints all string representation of all instances based or not on the class name."""
+        """Prints all string representation of
+        all instances based or not on the class name."""
         if arg and arg not in class_names:
             print("** class doesn't exist **")
             return
@@ -133,10 +133,10 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(obj))
 
         print(obj_list)
-    
-    
+
     def do_update(self, arg):
-        """Updates an instance based on the class name and id by adding or updating attribute."""
+        """Updates an instance based on the class name
+        and id by adding or updating attribute."""
         args = arg.split()
         if len(args) < 1:
             print("** class name missing **")
@@ -188,16 +188,14 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attribute_name, attribute_value)
         instance.save()
 
-    
-    
     def do_help(self, arg):
         """To get help on a command, type help <topic>."""
         return super().do_help(arg)
-    
+
     def do_quit(self, arg):
         """Command to exit the program."""
         return True
-    
+
     def do_EOF(self, arg):
         """Inbuilt EOF command to calmly catch errors."""
         return True
