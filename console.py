@@ -55,11 +55,13 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel"""
         if len(arg) < 1:
             print("** class name missing **")
+            return
 
         elif arg in class_names:
-            base_model1 = BaseModel()
-            base_model1.save()
-            print(base_model1.id)
+            print(arg)
+            class_instance = globals()[arg]()
+            class_instance.save()
+            print(class_instance.id)
 
         else:
             print("** class doesn't exist **")
@@ -199,6 +201,9 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """Inbuilt EOF command to calmly catch errors."""
         return True
+    
+    def emptyline(self):
+        pass
 
 
 if __name__ == '__main__':

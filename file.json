@@ -1,0 +1,38 @@
+{
+    "BaseModel.2be3dc72-b365-452a-8846-97309171ad62": {
+        "id": "2be3dc72-b365-452a-8846-97309171ad62",
+        "created_at": "2024-05-23T20:52:25.400814",
+        "updated_at": "2024-05-23T20:52:25.403174",
+        "__class__": "BaseModel"
+    },
+    "Place.f52605b7-c49d-4245-a774-b1db45b1653d": {
+        "id": "f52605b7-c49d-4245-a774-b1db45b1653d",
+        "created_at": "2024-05-23T20:52:52.252070",
+        "updated_at": "2024-05-23T20:52:52.252101",
+        "__class__": "Place"
+    },
+    "User.aeefed47-66b2-474b-aaad-e0ece5b8df8f": {
+        "id": "aeefed47-66b2-474b-aaad-e0ece5b8df8f",
+        "created_at": "2024-05-23T20:58:21.130726",
+        "updated_at": "2024-05-23T20:58:21.130807",
+        "__class__": "User"
+    },
+    "BaseModel.f7fa0c07-824f-4eda-98ee-5d2af17c3d2d": {
+        "id": "f7fa0c07-824f-4eda-98ee-5d2af17c3d2d",
+        "created_at": "2024-05-23T20:58:54.843044",
+        "updated_at": "2024-05-23T20:58:54.843065",
+        "__class__": "BaseModel"
+    },
+    "User.f31b5304-f41b-47ca-811a-c0e5a3294340": {
+        "id": "f31b5304-f41b-47ca-811a-c0e5a3294340",
+        "created_at": "2024-05-23T20:59:00.362742",
+        "updated_at": "2024-05-23T20:59:00.362770",
+        "__class__": "User"
+    },
+    "Place.110ac1a1-fa70-4820-905d-1503604a9f7b": {
+        "id": "110ac1a1-fa70-4820-905d-1503604a9f7b",
+        "created_at": "2024-05-23T20:59:05.533227",
+        "updated_at": "2024-05-23T20:59:05.533284",
+        "__class__": "Place"
+    }
+}
