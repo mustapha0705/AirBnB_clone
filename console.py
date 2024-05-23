@@ -202,7 +202,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """Inbuilt EOF command to calmly catch errors."""
         return True
-    
+
     def emptyline(self):
         pass
 
