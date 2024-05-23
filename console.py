@@ -190,6 +190,11 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attribute_name, attribute_value)
         instance.save()
 
+    def default(self, arg):
+        """Default behaviour for cmd module when input is invalid"""
+        print(f"'{arg}' command is invalid")
+        return
+
     def do_help(self, arg):
         """To get help on a command, type help <topic>."""
         return super().do_help(arg)
@@ -204,6 +209,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
+        """Do nothing when an empty line is entered"""
         pass
 
 
