@@ -27,6 +27,7 @@ Typical usage example:
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.engine.file_storage import FileStorage
 from models.user import User
 from models.state import State
 from models.review import Review
@@ -126,10 +127,13 @@ class HBNBCommand(cmd.Cmd):
         obj_instances = storage.all()
         obj_list = []
 
+        # If arg is provided, filter instances by class name
         if arg:
             for key, obj in obj_instances.items():
                 if key.startswith(arg + "."):
                     obj_list.append(str(obj))
+                    
+        # If arg is not provided, add all instances
         else:
             for obj in obj_instances.values():
                 obj_list.append(str(obj))
@@ -189,11 +193,72 @@ class HBNBCommand(cmd.Cmd):
 
         setattr(instance, attribute_name, attribute_value)
         instance.save()
+        
+    def do_count(self, arg):
+        """
+        Counts and retrieves the number of instances of a class
+        usage: <class name>.count()
+        """
+        arg = arg.split()
+        storage = FileStorage()
+        objs_counter = 0
+        objs = storage.all()
+        if len(arg) == 0:
+            print("** class name missing **")
+        else:
+            if arg[0] in self.valid_classnames:
+                for key, value in objs.items():
+                    class_name, obj_id = key.split(".")
+                    if arg[0] == class_name:
+                        objs_counter += 1
+            else:
+                print("** invalid class name **")
+            if objs_counter == 0:
+                return
+            print(objs_counter)
 
     def default(self, arg):
-        """Default behaviour for cmd module when input is invalid"""
-        print(f"'{arg}' command is invalid")
-        return
+        """
+        Default behavior for cmd module when input is not valid
+        """
+        if "." in arg and "(" in arg and ")" in arg:
+            # Splitting the command into class_name and method
+            arg_list = arg.split('.')
+            class_name = arg_list[0]
+            method = arg_list[1].split("(")[0]
+            
+            method_dict = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "update": self.do_update,
+            "count": self.do_count
+            }
+            
+            # Check if class_name is valid
+            if class_name not in class_names:
+                print("** class doesn't exist **")
+                return False
+            
+            # Check if method exists in the method_dict
+            if method not in method_dict:
+                print("*** Unknown syntax: {}".format(arg))
+                return False
+            
+            # Extracting arguments within parentheses if any
+            if "(" in arg and ")" in arg:
+                arg_start = arg.index("(") + 1
+                arg_end = arg.index(")")
+                args = arg[arg_start:arg_end].strip()
+            else:
+                args = ""
+            
+            # Call the appropriate method from method_dict
+            return method_dict[method](class_name + " " + args)
+        
+        else:
+            print("*** Unknown syntax: {}".format(arg))
+            return False
 
     def do_help(self, arg):
         """To get help on a command, type help <topic>."""

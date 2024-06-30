@@ -44,7 +44,7 @@ class FileStorage:
         # Open the __file_path and serialize the serialized
         # objects to JSON and store in the file
         with open(self.__file_path, 'w', encoding='utf-8') as file:
-            json.dump(serialized_objects, file)
+            json.dump(serialized_objects, file, indent=4)
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
